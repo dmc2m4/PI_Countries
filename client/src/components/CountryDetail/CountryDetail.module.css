@@ -1,0 +1,76 @@
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.content::before {
+    content: "";
+    background-image: url(../../asses/wroldmap.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* filter: blur(10px); */
+    position: fixed;
+    z-index: -1;
+  }
+.card{
+    display: flex;
+    border-style:outset;
+    margin-top: 18px;
+    margin-bottom: 40px;
+    background-color:   rgba(233, 228, 201, 0.874);
+    border-radius: 20px;
+    padding-top:10px;
+}
+
+.activities{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+}
+.img{
+    margin: 30px;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    width: 300px;
+    height: 200px;
+}
+.span{
+    font-size: 14px;
+    margin-right: 5px;
+    color: rgb(65, 67, 46);
+}
+.id{
+    margin-top: 10px;
+    font-size: 20px;
+    font-family:fantasy;
+    font-weight: 100;
+    color: rgb(65, 67, 46);
+}
+.name{
+    margin-top: 30px;
+    margin-left: 10px;
+    font-size: 25px;
+    color: rgb(65, 67, 46);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.message{
+    font-size: 20px;
+    color: rgb(65, 67, 46);
+}
+.description{
+    margin-top: 0px;
+    color: rgb(65, 67, 46);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.paginated{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

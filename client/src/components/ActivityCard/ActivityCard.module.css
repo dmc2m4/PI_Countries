@@ -1,0 +1,31 @@
+.card {
+    width: 150px;
+    height: 270px;
+    background-color:rgb(65, 67, 46);
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    border-style: outset;
+    align-items: center;
+    margin: 10px;
+}
+.img {
+    width: 80px;
+    height: 75px;
+    margin-bottom: 10px;
+}
+.span{
+    font-size: 12px;
+    color: rgba(233, 228, 201, 0.874);
+    margin:0px;
+}
+.name{
+    font-size: 15px;
+    color: rgba(233, 228, 201, 0.874);
+    margin-top: 10px;
+}
+.description{
+    font-size: 15px;
+    color: rgba(233, 228, 201, 0.874);
+    margin: 0px;
+}

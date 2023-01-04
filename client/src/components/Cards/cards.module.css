@@ -1,0 +1,86 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 58%;
+    border-radius: 10%;
+    padding: 10px;
+    margin-left: 20px;
+}
+.content{
+    display: flex; 
+    flex-wrap: wrap;
+}
+.content::before {
+    content: "";
+    background-image: url(../../asses/wroldmap.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* filter: blur(10px); */
+    position: fixed;
+    z-index: -1;
+  }
+
+.page{
+    align-items: center;
+    width: 100%;
+}
+.selectors{
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-right: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color:  rgb(65, 67, 46);
+    width: 320px;
+    height: 500px;
+}
+.caja {
+    margin:10px auto 20px auto;	
+    border:1px solid #d9d9d9;
+    height:30px;
+    overflow: hidden;
+    width: 230px;
+    position:relative;
+    border-radius: 5px;
+ }
+ select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 250px;
+    color: aliceblue;
+ }
+ select:focus{ 
+    outline: none;
+    background-color: rgb(65, 67, 46);
+}
+ 
+ .caja::after{
+     content:"\025be";
+     display:table-cell;
+     padding-top:7px;
+     text-align:center;
+     width:30px;
+     height:30px;
+     background-color:aliceblue;
+     position:absolute;
+     top:0;
+     right:0px;	
+     pointer-events: none;
+     color: black;
+ }
+ .titulo{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: aliceblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+ }
