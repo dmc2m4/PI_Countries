@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllActivities } from "../../redux/actions";
+import { changePage, getAllActivities } from "../../redux/actions";
 import Loading from "../Loading/Loading";
 import ActivityCard from "../ActivityCard/ActivityCard";
 import Paginado from "../paginated/Paginated";
@@ -14,7 +14,8 @@ export default function ActivityCards () {
 
     useEffect(()=>{
         dispatch(getAllActivities())
-    })
+        dispatch(changePage(1))
+    },[dispatch])
 
     function activitiesByPage (){
         return allActivities.slice((page - 1) * 16, (((page - 1) * 16) + 16))

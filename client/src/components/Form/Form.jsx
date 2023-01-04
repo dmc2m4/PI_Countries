@@ -21,7 +21,7 @@ export default function Form() {
 
     useEffect(() => {
         dispatch(getAllCountries())
-    }, [])
+    }, [dispatch])
 
     console.log(newActivity.countries);
     console.log(newActivity);
@@ -59,7 +59,7 @@ export default function Form() {
         if (input.name.length === 0) errors.name = "Required field"
         if (input.dificult.length === 0) errors.dificult = "Required field"
         if (input.duration.length === 0) errors.duration = "Required field"
-        if (input.season.length === 0) errors.season = "Require field"
+        if (input.season.length === 0) errors.season = []
         if (input.dificult < 0 || input.dificult > 5) errors.dificult = "The difficulty must be between 1 and 5"
         if (input.duration === 0 || input.duration > 24) errors.duration = "The duration must be between 1hr and 24hr"
 
@@ -74,7 +74,9 @@ export default function Form() {
         dispatch(addActivity(newActivity));
         navigate("/Home")
     }
+    
     console.log(newActivity);
+
     function deleteCountrie(name) {
         setNewActivity({
             ...newActivity,

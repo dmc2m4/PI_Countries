@@ -35,20 +35,19 @@ const getAllCountries = async function () {
     return dbCountries
 }
 
-const getCountriesWithTuristActivities = async function (id) {
-    const tutistActivities = await Country.findByPk(id, {
+const getCountriesWithTouristActivities = async function (id) {
+    const touristActivities = await Country.findByPk(id, {
         include: {
             model: Activity
         }
     })
-    console.log(tutistActivities);
-    return tutistActivities
+    return touristActivities
 }
 
 const createtNewActivity = async function (value) {
     const searchingActivity = await Activity.findAll({
         where: {
-            name: value.name.toLowerCase()
+            name: value.name.toUpperCase()
         }
     })
     if (searchingActivity.length) throw new Error('Esta actividad turistica ya existe')
@@ -58,7 +57,6 @@ const createtNewActivity = async function (value) {
             name: value.countries
         }
     })
-    console.log(countriesByActivities);
     newActivity.addCountries(countriesByActivities)
     return newActivity
 }
@@ -71,7 +69,7 @@ const getAllActivities = async function () {
 const deleteActivity = async function (name){
     await Activity.destroy({
         where : {
-            name: name
+            name: name.toUpperCase()
         }
     })
 }
@@ -79,7 +77,7 @@ const deleteActivity = async function (name){
 module.exports = {
     deleteActivity,
     getAllCountries,
-    getCountriesWithTuristActivities,
+    getCountriesWithTouristActivities,
     createtNewActivity,
     getAllActivities
 }
