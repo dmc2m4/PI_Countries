@@ -72,6 +72,7 @@ export default function Form() {
             return alert("Por favor completar todos los campos")
         }
         dispatch(addActivity(newActivity));
+        alert("La actividad se creó correctamente")
         navigate("/Home")
     }
     

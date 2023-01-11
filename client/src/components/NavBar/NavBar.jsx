@@ -8,17 +8,19 @@ export default function NavBar() {
 
     return <div className={styles.content}>
         <div >
-            <img src={image} alt="" className={styles.logo}/>
+            <Link to="/Home">
+                <img src={image} alt="" className={styles.logo} />
+            </Link>
         </div>
         <div className={styles.links}>
             <Link to="/activities">
-            <button className={styles.all}>All activities</button>
+                <button className={styles.all}>All activities</button>
             </Link>
             <Link to="/newActivity">
-            <button className={styles.create}>Create new activity</button>
+                <button className={styles.create}>Create new activity</button>
             </Link>
             <Link to="/Home">
-            <button className={styles.home}>🏠Home</button>
+                <button className={styles.home}>🏠Home</button>
             </Link>
         </div>
     </div>

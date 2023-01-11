@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from './card.module.css'
+import styles from './card.module.css';
+
 
 export default function Card (props) {
-  console.log(props.population);
+
     return (
         <div className= {styles.card}>
             <h1 className = {styles.country}>{props.name} </h1>

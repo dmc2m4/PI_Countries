@@ -106,3 +106,9 @@ export const getAllActivities = () => {
     }
 };
 
+export const deleteActivity = (activity) => {
+    return async function (){
+        await axios.delete (`${API_URL}/activities`, activity);  
+    }
+}
+

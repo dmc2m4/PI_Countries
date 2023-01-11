@@ -62,7 +62,8 @@ export default function rootReducer(state = initialState, action) {
                 countriesOrderByName.sort((a, b) => a.name.localeCompare(b.name))
             } else if (action.payload === "Descending") {
                 countriesOrderByName.sort((a, b) => b.name.localeCompare(a.name))
-            } else if (action.payload === "allCountries") {
+            } 
+            else if (action.payload === "allCountries") {
                 countriesOrderByName = [...state.countryBackUp]
             }
             return {
@@ -76,7 +77,8 @@ export default function rootReducer(state = initialState, action) {
                 orderCountriesByPopulation.sort((a, b) => a.population - b.population)
             } else if (action.payload === "Descending") {
                 orderCountriesByPopulation.sort((a, b) => b.population - a.population)
-            } else if (action.payload === "allCountries") {
+            } 
+            else if (action.payload === "allCountries") {
                 orderCountriesByPopulation = [...state.countryBackUp]
             }
             return {

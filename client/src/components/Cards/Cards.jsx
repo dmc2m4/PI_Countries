@@ -2,17 +2,29 @@ import Card from "../Card/Card";
 import React, { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCountries, orderCountriesByname, resetDetail, orderCountriesByPopulation, filteredByContinent, changePage } from "../../redux/actions";
-import styles from './cards.module.css'
+import styles from './cards.module.css';
 import Paginado from "../paginated/Paginated";
 import Loading from "../Loading/Loading";
-import SearchBar from "../SearchBar/SearchBar"
+import SearchBar from "../SearchBar/SearchBar";
+// import Select from 'react-select';
 
 export default function Cards() {
     const allCountries = useSelector(state => state.allCountries)
     const dispatch = useDispatch()
     const page = useSelector(state => state.page)
     const maxPage = Math.ceil(allCountries.length / 10)
+    // const [select, setSelect] = useState(false)
 
+    // const orderByName = [
+    //     {label:'Alphabetically ascending', value: 'Ascending'},
+    //     {label:'Alphabetically descending', value: 'Descending'}
+    // ]
+
+    // const population = [
+    //     {label:'Ascending', value: 'Ascending'},
+    //     {label:'Descending', value: 'Descending'}
+    // ]
+    
     function filteredCountries() {
         return allCountries.slice((page - 1) * 10, (((page - 1) * 10) + 10))
     }
@@ -25,6 +37,7 @@ export default function Cards() {
     function alphabeticallyOrder (e){
         dispatch(orderCountriesByname(e.target.value))
         dispatch(changePage(1))
+        // setSelect(true)
     }
 
     function orderedByPopulation (e){
@@ -33,6 +46,7 @@ export default function Cards() {
     }
 
     function filterCountriesByContinent (e){
+        e.preventDefault()
         dispatch(filteredByContinent(e.target.value))
         dispatch(changePage(1))
     }
@@ -49,8 +63,7 @@ export default function Cards() {
         {/* <button onClick={resetAllCountries}>All countries</button> */}
         <h1 className={styles.titulo}>Order and filter countries:</h1>
         <div className={styles.caja}>
-            <select name = "order" onChange={e => alphabeticallyOrder(e)}>
-                <option value="" selected disabled hidden>Order by name</option>
+            <select name = "order" onChange={e => alphabeticallyOrder(e)} >
                 <option value ="allCountries">Order by name</option>
                 <option value = "Ascending">Alphabetically ascending</option>
                 <option value = "Descending">Alphabetically descending</option>
@@ -58,7 +71,6 @@ export default function Cards() {
         </div>
         <div className={styles.caja}>
             <select name = "orderByPopulation" onChange={e => orderedByPopulation(e)}>
-                <option value="" selected disabled hidden>Order by population</option>
                 <option value ="allCountries">Order by population</option>
                 <option value = "Ascending">Ascending</option>
                 <option value = "Descending">Descending</option>
@@ -77,6 +89,14 @@ export default function Cards() {
                 <option value = "Antarctica">Antarctica</option>
             </select>
         </div>
+        {/* <div>
+            <Select options={orderByName} onChange={alphabeticallyOrder}></Select>
+        </div>
+        <div>
+            <Select defaultValue={{label:"Order by name", value: select}} 
+            options={population} 
+            onChange={orderedByPopulation}></Select>
+        </div> */}
         </div>
         <div className={styles.cards}>
         {!allCountries[0]? <Loading /> : filteredCountries().map(country => (
