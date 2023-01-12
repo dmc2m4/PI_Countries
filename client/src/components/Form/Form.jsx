@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addActivity, getAllCountries } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import styles from "./form.module.css"
-import image from "../../asses/tourist.jpg"
+import styles from "./form.module.css";
+import image from "../../asses/tourist.jpg";
+import Select from "react-select";
+import swal from "sweetalert";
 
 
 export default function Form() {
@@ -23,8 +25,8 @@ export default function Form() {
         dispatch(getAllCountries())
     }, [dispatch])
 
-    console.log(newActivity.countries);
-    console.log(newActivity);
+
+    // console.log(newActivity);
 
     const handleInputChange = (e) => {
         setErrors(
@@ -40,17 +42,25 @@ export default function Form() {
         })
     }
 
-    const handleInputChange2 = (e) =>{
+    const handleInputChange2 = (e) => {
         setNewActivity({
             ...newActivity,
             season: e.target.value
         })
     }
 
+    // function addMoreCountries(e) {
+    //     setNewActivity({
+    //         ...newActivity,
+    //         countries: [...new Set([...newActivity.countries, e.target.value])]
+    //     })
+    //     console.log(e.target.value);
+    // }
+
     function addMoreCountries(e) {
         setNewActivity({
             ...newActivity,
-            countries: [...new Set([...newActivity.countries, e.target.value])]
+            countries: e.map(country => country.value)
         })
     }
 
@@ -67,23 +77,28 @@ export default function Form() {
     }
 
     function handleSubmit(e) {
-        e.preventDefault();
         if (!newActivity.name || !newActivity.duration || !newActivity.dificult || !newActivity.season || !newActivity.countries.length) {
             return alert("Por favor completar todos los campos")
         }
-        dispatch(addActivity(newActivity));
-        alert("La actividad se creó correctamente")
-        navigate("/Home")
-    }
-    
-    console.log(newActivity);
-
-    function deleteCountrie(name) {
-        setNewActivity({
-            ...newActivity,
-            countries: newActivity.countries.filter(country => country !== name)
+        swal({
+            tittle: "ACTIVITY CREATED",
+            text: "the activity has been created successfully",
+            icon: "success",
+            buttons: "OK",
         })
+            dispatch(addActivity(newActivity));
+            navigate("/Home")
+        
     }
+
+    // console.log(newActivity);
+
+    // function deleteCountrie(name) {
+    //     setNewActivity({
+    //         ...newActivity,
+    //         countries: newActivity.countries.filter(country => country !== name)
+    //     })
+    // }
 
     return <div className={styles.content}>
         <img alt="tourist" src={image} className={styles.img}></img>
@@ -125,7 +140,7 @@ export default function Form() {
                     {errors.duration && (<p className={styles.errors}>{errors.duration}</p>)}
                 </div>
                 <div>
-                    <select onChange={handleInputChange2} name="seasons" className={styles.selector}>
+                    <select onChange={handleInputChange2} name="seasons" className={styles.selector2}>
                         <option value="" selected disabled hidden>Select season</option>
                         <option value="all seasons">All seasons</option>
                         <option value="summer">Summer</option>
@@ -137,6 +152,15 @@ export default function Form() {
                     {errors.season && (<p className={styles.errors}>{errors.season}</p>)}
                 </div>
                 <div>
+                    <label className={styles.labels2}>Select countries</label>
+                    <Select
+                        onChange={addMoreCountries}
+                        options={allCountries.map(country => ({ label: country.name, value: country.name }))}
+                        isMulti
+                        className={styles.selector}
+                    />
+                </div>
+                {/* <div>
                     <select onChange={addMoreCountries} name="countries" className={styles.selector}>
                         <option value="" selected disabled hidden>
                             Select countries
@@ -155,7 +179,7 @@ export default function Form() {
                         className={styles.cancel}>X</button>
                         </li>
                     ):""}
-                </div>
+                </div> */}
                 <button type="submit" className={styles.submit}>Post  activity</button>
             </form>
         </div>

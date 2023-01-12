@@ -10,6 +10,7 @@ export const RESET_COUNTRIES = 'RESET_COUNTRIES'
 export const ORDER_BY_POPULATION = 'ORDER_BY_POPULATION'
 export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT'
 export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES"
+export const DELETE_ACTIVITY = 'DELETE_ACTIVITY'
 
 
 
@@ -107,8 +108,16 @@ export const getAllActivities = () => {
 };
 
 export const deleteActivity = (activity) => {
-    return async function (){
-        await axios.delete (`${API_URL}/activities`, activity);  
+    return async function (dispatch){
+        try{
+            await axios.delete (`${API_URL}/activities/${activity}`); 
+            dispatch({
+                type: DELETE_ACTIVITY,
+                payload: activity
+            })
+        }catch(error){
+            alert('the activity could not be deleted')
+        }  
     }
 }
 

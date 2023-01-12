@@ -26,13 +26,14 @@ activityRouter.get('/', async (req, res) => {
     }
 })
 
-activityRouter.delete('/', async (req, res)=>{
+activityRouter.delete('/:name', async (req, res)=>{
     try {
-        const {name} = req.body;
+        // console.log(req.params);
+        const {name} = req.params;
         await deleteActivity(name)
         res.status(200).send('Actividad borrada satisfactoriamente')
     }catch(error){
-        res.status(400).send(error)
+        res.status(400).send(error.message)
     }
 })
 module.exports = activityRouter

@@ -67,11 +67,8 @@ const getAllActivities = async function () {
 }
 
 const deleteActivity = async function (name){
-    await Activity.destroy({
-        where : {
-            name: name.toUpperCase()
-        }
-    })
+    console.log(name);
+     await Activity.destroy({where: {name}})
 }
 
 module.exports = {

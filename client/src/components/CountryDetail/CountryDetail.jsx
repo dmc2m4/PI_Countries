@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { detailCountry, resetCountries } from "../../redux/actions";
+import { detailCountry, resetCountries, deleteActivity } from "../../redux/actions";
 import Loading from "../Loading/Loading";
 import ActivityCard from "../ActivityCard/ActivityCard";
 import styles from "./CountryDetail.module.css"
 import Paginado from "../paginated/Paginated";
+import swal from "sweetalert";
 
 
 export default function CountryDetail() {
@@ -19,11 +20,23 @@ export default function CountryDetail() {
         return countriesDetail?.activities?.slice((page - 1) * 8, (((page - 1) * 8) + 8))
     }
 
-
     useEffect(() => {
         dispatch(detailCountry(id))
         dispatch(resetCountries())
     }, [dispatch, id])
+
+    async function deleteActivities (activity) {
+        const deleteAlert = await swal({
+            tittle: "DELETE ACTIVITY",
+            text: "are you sure that do you want to delete this activity?",
+            icon: "warning",
+            buttons: ["no", "yes"]
+        })
+        if (deleteAlert){
+            dispatch(deleteActivity(activity))
+            dispatch(detailCountry(id))
+        }
+    }
 
     return <div className={styles.content}>
         <div className={styles.card}>
@@ -47,6 +60,7 @@ export default function CountryDetail() {
                             dificult={activity.dificult}
                             season={activity.season}
                             key={activity.id}
+                            deleteActivities ={deleteActivities}
                         />
                     ))}
             </div>

@@ -8,7 +8,8 @@ import {
     RESET_COUNTRIES,
     ORDER_BY_POPULATION,
     FILTER_BY_CONTINENT,
-    GET_ALL_ACTIVITIES
+    GET_ALL_ACTIVITIES,
+    DELETE_ACTIVITY
 } from "./actions"
 
 const initialState = {
@@ -102,6 +103,11 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 allActivities: action.payload,
                 activitiesBackUp: action.payload
+            }
+        case DELETE_ACTIVITY:
+            return{
+                ...state,
+                allActivities: [...state.allActivities].filter(activity => activity.name.toUpperCase() !== action.payload)
             }
         default:
             return { ...state }
