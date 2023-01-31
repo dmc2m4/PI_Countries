@@ -116,7 +116,7 @@ export const deleteActivity = (activity) => {
                 payload: activity
             })
         }catch(error){
-            alert('the activity could not be deleted')
+            alert({msg: error})
         }  
     }
 }

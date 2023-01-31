@@ -32,6 +32,7 @@ export default function Cards() {
     useEffect(() => {
         dispatch(getAllCountries());
         dispatch(resetDetail());
+        dispatch(changePage(1));
     }, [dispatch])
 
     function alphabeticallyOrder (e){
